@@ -7,11 +7,11 @@ public class Register {
     private BitSet data = new BitSet(64);
 
     public void setData(BitSet data) {
-        this.data = data;
+        this.data = (BitSet) data.clone();
     }
 
     public BitSet getData() {
-        return data;
+        return (BitSet) data.clone();
     }
 
     @Override

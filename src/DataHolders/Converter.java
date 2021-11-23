@@ -78,6 +78,16 @@ public class Converter {
         return value;
     }
 
+    // Float
+
+    public static BitSet convertFloatToBits(float value) {
+        return convertIntToBits(Float.floatToRawIntBits(value));
+    }
+
+    public static float convertBitsToFloat(BitSet bitSet) {
+        return Float.intBitsToFloat(convertBitsToInt(bitSet));
+    }
+
     // Long (64 bit)
 
     public static BitSet convertLongToBits(long value) {
@@ -100,5 +110,15 @@ public class Converter {
             }
         }
         return value;
+    }
+
+    // Double
+
+    public static BitSet convertDoubleToBits(double value) {
+        return convertLongToBits(Double.doubleToLongBits(value));
+    }
+
+    public static double convertBitsToDouble(BitSet bitSet) {
+        return Double.longBitsToDouble(convertBitsToLong(bitSet));
     }
 }

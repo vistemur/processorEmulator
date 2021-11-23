@@ -13,10 +13,10 @@ public class Registers {
         setRegistersAmount(amount);
     }
 
-    public Register getRegister(int number) {
+    public Register getRegister(int number) throws RegistersException {
         if (number < amount)
             return registers[number];
-        return null;
+        throw new RegistersException(amount, number);
     }
 
     public int getRegistersAmount() {
@@ -34,7 +34,7 @@ public class Registers {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Registers {\n");
+        stringBuilder.append("DataHolders.DataHolders.Registers.Registers.Registers {\n");
         for (int i = 0; i < amount; i++) {
             stringBuilder.append(i);
             stringBuilder.append(" : ");
