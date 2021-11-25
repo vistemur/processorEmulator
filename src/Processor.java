@@ -3,6 +3,7 @@ import DataHolders.Memory.Memory;
 import DataHolders.Registers.*;
 import Interpreter.*;
 import ProcessorCommands.*;
+import ProcessorCommands.Convert.*;
 import ProcessorCommands.Functions.*;
 import ProcessorCommands.Jump.*;
 import ProcessorCommands.Logic.*;
@@ -13,7 +14,7 @@ public class Processor {
 
     ProcessorRegisters registers = new ProcessorRegisters();
     Memory memory = new Memory(100, registers.system.bdp, registers.system.itp);
-    int memoryStartIndex = 50;
+    int stackSize = 50;
     Interpreter interpreter = new Interpreter(new InterpreterRegisters(new RegistersForInterpreter() {
 
         public Register getPoh(int number) throws RegistersException {
@@ -57,6 +58,10 @@ public class Processor {
             new SUB(),
             new MUL(),
             new DIV(),
+            new DADD(),
+            new DSUB(),
+            new DMUL(),
+            new DDIV(),
             new AND(),
             new OR(),
             new XOR(),
@@ -71,12 +76,14 @@ public class Processor {
             new JGE(),
             new CALL(),
             new RET(),
-            new NOP()
+            new NOP(),
+            new LTD(),
+            new DTL()
     );
 
     public Processor() {
 
-        registers.system.bdp.setData(Converter.convertIntToBits(memoryStartIndex));
+        registers.system.bdp.setData(Converter.convertIntToBits(stackSize));
 
         String[] program = new String[] {
                 "JMP _main",

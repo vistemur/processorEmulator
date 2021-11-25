@@ -35,12 +35,18 @@ public class Memory {
         destination.setData(data);
     }
 
-    public int push(BitSet value) throws RegistersException {
+    public int push(BitSet value) throws Exception {
         int lastFunctionCallData = Converter.convertBitsToInt(lastFunctionCall.getData());
 
         lastFunctionCallData -= 1;
         lastFunctionCall.setData(Converter.convertIntToBits(lastFunctionCallData));
-        data.getRegister(lastFunctionCallData).setData(value);
+
+        try {
+            data.getRegister(lastFunctionCallData).setData(value);
+        } catch (RegistersException e) {
+            throw new Exception("stack overflow );");
+        }
+
         return lastFunctionCallData;
     }
 

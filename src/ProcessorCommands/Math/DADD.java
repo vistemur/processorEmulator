@@ -5,10 +5,10 @@ import DataHolders.Converter;
 import DataHolders.Registers.RegisterType;
 import DataHolders.Registers.TypedRegister;
 
-public class DIV implements ExecutableCommand {
+public class DADD implements ExecutableCommand {
 
     public String getLine() {
-        return "DIV";
+        return "DADD";
     }
 
     public int getRegistersRequired() {
@@ -17,10 +17,10 @@ public class DIV implements ExecutableCommand {
 
     public void execute(TypedRegister R1, TypedRegister R2, TypedRegister R3) throws Exception {
         if (R1.type == RegisterType.memory && R2.type == RegisterType.memory)
-            throw new Exception(getLine() + " can't move divide between memory");
+            throw new Exception(getLine() + " can't add data between memory");
 
-        long a = Converter.convertBitsToLong(R1.register.getData());
-        long b = Converter.convertBitsToLong(R2.register.getData());
-        R1.register.setData(Converter.convertLongToBits(a / b));
+        Double a = Converter.convertBitsToDouble(R1.register.getData());
+        Double b = Converter.convertBitsToDouble(R2.register.getData());
+        R1.register.setData(Converter.convertDoubleToBits(a + b));
     }
 }

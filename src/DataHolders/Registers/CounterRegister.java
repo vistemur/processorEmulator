@@ -50,7 +50,7 @@ public class CounterRegister extends Register {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(super.toString());
-        stringBuilder.append("saved positions {");
+        stringBuilder.append("\nsaved positions {");
         for (SavedPosition savedPosition : savedPositions) {
             stringBuilder.append("\n");
             stringBuilder.append(savedPosition.name);
