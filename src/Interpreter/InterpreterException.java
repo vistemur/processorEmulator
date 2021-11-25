@@ -3,8 +3,8 @@ package Interpreter;
 public class InterpreterException extends Exception {
 
     private String message;
-    public InterpreterException(int line, String message) {
-        this.message = "Error on line " + line + '\n' + message;
+    public InterpreterException(int lineNumber, String line, String message) {
+        this.message = "Error on line " + lineNumber + '\n' + line + '\n' + message;
     }
 
     @Override

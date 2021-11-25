@@ -35,31 +35,51 @@ public class Interpreter {
         Register pc = interpreterRegisters.registers.getPc();
         int pcData = Converter.convertBitsToInt(pc.getData());
 
-        if (pcData >= currentLineNumber) {
+        while (pcData >= currentLineNumber) {
             commands[currentLineNumber] = getCommand(program[currentLineNumber]);
             currentLineNumber++;
         }
-        commands[pcData].execute();
+        try {
+            commands[pcData].execute();
+        } catch (Exception e) {
+            throw new InterpreterException(pcData, program[pcData], e.getMessage());
+        }
     }
 
     private Command getCommand(String line) throws InterpreterException {
         String[] words = line.split(" ");
         TypedRegister[] R = new TypedRegister[3];
 
-        ExecutableCommand executableCommand = getExecutableCommand(words[0]);
-        for (int registerNumber = 0; registerNumber < words.length - 1 && registerNumber < 3; registerNumber++) {
+        ExecutableCommand executableCommand = getExecutableCommand(words[0].toUpperCase());
+        for (int registerNumber = 0; registerNumber < words.length - 1 && registerNumber < 3 && registerNumber < executableCommand.getRegistersRequired(); registerNumber++) {
             R[registerNumber] = getRegister(words[registerNumber + 1]);
         }
-        return new Command(executableCommand, R[0], R[1], R[2], interpreterRegisters.registers.getPc());
+        return new Command
+                (
+                        executableCommand,
+                        R[0],
+                        R[1],
+                        R[2],
+                        interpreterRegisters.registers.getMemory(),
+                        interpreterRegisters.registers.getPc()
+                );
     }
 
     private ExecutableCommand getExecutableCommand(String name) throws InterpreterException {
+        CounterRegister pc = interpreterRegisters.registers.getPc();
+
+        if (name.charAt(0) == '_') {
+            pc.save(name);
+            pc.incrementPC();
+        }
+
         for (ExecutableCommand command : executableCommands) {
-            if (command.getLine().split(" ")[0].equals(name)) {
+            if (command.getLine().equals(name)) {
                 return command;
             }
         }
-        throw new InterpreterException(currentLineNumber, "unable to find command " + name);
+        int pcData = Converter.convertBitsToInt(pc.getData());
+        throw new InterpreterException(pcData, program[pcData], "unable to find command " + name);
     }
 
     private TypedRegister getRegister(String name) throws InterpreterException {
@@ -67,7 +87,7 @@ public class Interpreter {
 
         if (firstChar == '\'') {
             return new TypedRegister(getRegisterFromChar(name), RegisterType.value);
-        } else if (firstChar > '0' && firstChar < '9') {
+        } else if (firstChar >= '0' && firstChar <= '9' || firstChar <= '-') {
             if (name.contains("."))
                 return new TypedRegister(getRegisterFromDouble(name), RegisterType.value);
             else
@@ -76,7 +96,8 @@ public class Interpreter {
             try {
                 return interpreterRegisters.getRegister(name);
             } catch (Exception e) {
-                throw new InterpreterException(currentLineNumber, e.getMessage());
+                int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
+                throw new InterpreterException(pcData, program[pcData], e.getMessage());
             }
         }
     }

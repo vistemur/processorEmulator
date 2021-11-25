@@ -9,7 +9,7 @@ public class Main {
     }
 
     private static void textMemory() {
-        Memory memory = new Memory(100);
+        Memory memory = new Memory(100, new Register(), new Register());
         Register register = new Register();
 
         try {

@@ -14,7 +14,7 @@ public class Registers {
     }
 
     public Register getRegister(int number) throws RegistersException {
-        if (number < amount)
+        if (number < amount && number >= 0)
             return registers[number];
         throw new RegistersException(amount, number);
     }

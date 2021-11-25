@@ -1,12 +1,15 @@
 package DataHolders.Commands;
 
-import DataHolders.Registers.Register;
+import DataHolders.Memory.Memory;
+import DataHolders.Registers.CounterRegister;
 import DataHolders.Registers.TypedRegister;
 
 public interface ExecutableCommand {
+
     public String getLine();
-    public void execute(TypedRegister R1, TypedRegister R2, TypedRegister R3);
-    public default boolean increasePC() {
-        return true;
+    public int getRegistersRequired();
+    public void execute(TypedRegister R1, TypedRegister R2, TypedRegister R3) throws Exception;
+    public default void changeData(CounterRegister pc, Memory memory) throws Exception {
+        pc.incrementPC();
     }
 }
