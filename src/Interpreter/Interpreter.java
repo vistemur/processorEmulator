@@ -8,7 +8,6 @@ import DataHolders.Registers.*;
 import ProcessorIO.ProcessorStreams;
 
 import java.util.BitSet;
-import java.util.Locale;
 
 public class Interpreter {
 

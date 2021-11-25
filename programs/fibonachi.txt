@@ -1,0 +1,17 @@
+MOV R0 1000  // max fib value
+
+MOV R1 0
+MOV R2 1
+
+JMP _main
+
+_fib
+OUT R1
+MOV R3 R1
+ADD R3 R2
+MOV R1 R2
+MOV R2 R3
+JMP _main
+
+_main
+JG _fib R0 R1

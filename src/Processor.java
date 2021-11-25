@@ -10,7 +10,6 @@ import ProcessorCommands.Jump.*;
 import ProcessorCommands.Logic.*;
 import ProcessorCommands.Math.*;
 import ProcessorCommands.Shift.*;
-import ProcessorIO.Console.*;
 import ProcessorIO.ProcessorStreams;
 
 public class Processor {
