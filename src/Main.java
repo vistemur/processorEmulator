@@ -8,7 +8,7 @@ public class Main {
         Processor processor = new Processor();
     }
 
-    private static void textMemory() {
+    private static void testMemory() {
         Memory memory = new Memory(100, new Register(), new Register());
         Register register = new Register();
 

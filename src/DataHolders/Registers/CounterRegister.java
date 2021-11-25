@@ -44,4 +44,20 @@ public class CounterRegister extends Register {
             this.name = name;
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(super.toString());
+        stringBuilder.append("saved positions {");
+        for (SavedPosition savedPosition : savedPositions) {
+            stringBuilder.append("\n");
+            stringBuilder.append(savedPosition.name);
+            stringBuilder.append(" : ");
+            stringBuilder.append(savedPosition.position);
+        }
+        stringBuilder.append("\n}");
+        return stringBuilder.toString();
+    }
 }

@@ -70,7 +70,8 @@ public class Processor {
             new JG(),
             new JGE(),
             new CALL(),
-            new RET()
+            new RET(),
+            new NOP()
     );
 
     public Processor() {
@@ -78,11 +79,15 @@ public class Processor {
         registers.system.bdp.setData(Converter.convertIntToBits(memoryStartIndex));
 
         String[] program = new String[] {
-                "JMP 3",
+                "JMP _main",
+
+                "_lol",
                 "MOV R0 1",
                 "RET",
                 "ADD R1 1",
-                "CALL 1",
+
+                "_main",
+                "CALL _lol",
                 "ADD R2 1",
         };
 

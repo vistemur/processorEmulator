@@ -46,7 +46,7 @@ public class InterpreterRegisters {
     }
 
     private Register getSystemRegister(String text) throws Exception {
-        if (text.startsWith("R") || text.startsWith("r")) {
+        if (text.startsWith("R")) {
             int number = Integer.parseInt(text.substring(1));
             return registers.getPoh(number);
         } else if (text.equals("PC")) {
@@ -54,6 +54,7 @@ public class InterpreterRegisters {
         }
         throw new Exception("unable to find register " + text);
     }
+
     private Register getMemoryIndex(int offset, String text) throws Exception {
         int memoryStart = Converter.convertBitsToInt(registers.getBdp().getData());
         int memoryIndex;

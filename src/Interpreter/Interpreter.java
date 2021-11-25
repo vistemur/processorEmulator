@@ -7,8 +7,8 @@ import DataHolders.Registers.*;
 
 public class Interpreter {
 
-    private ExecutableCommand[] executableCommands;
-    private InterpreterRegisters interpreterRegisters;
+    private final ExecutableCommand[] executableCommands;
+    private final InterpreterRegisters interpreterRegisters;
     private Command[] commands;
     private String[] program;
     private int currentLineNumber;
@@ -20,6 +20,20 @@ public class Interpreter {
 
     public void loadProgram(String[] program) {
         this.program = program;
+        fillCP();
+    }
+
+    private void fillCP() {
+        CounterRegister pc = interpreterRegisters.registers.getPc();
+
+        pc.setPC(0L);
+        while (Converter.convertBitsToInt(pc.getData()) < program.length) {
+            int pcData = Converter.convertBitsToInt(pc.getData());
+            if (program[pcData].charAt(0) == '_')
+                pc.save(program[pcData].split(" ")[0].toUpperCase());
+            pc.incrementPC();
+        }
+        pc.setPC(0L);
     }
 
     public void run() throws InterpreterException {
@@ -52,7 +66,7 @@ public class Interpreter {
 
         ExecutableCommand executableCommand = getExecutableCommand(words[0].toUpperCase());
         for (int registerNumber = 0; registerNumber < words.length - 1 && registerNumber < 3 && registerNumber < executableCommand.getRegistersRequired(); registerNumber++) {
-            R[registerNumber] = getRegister(words[registerNumber + 1]);
+            R[registerNumber] = getRegister(words[registerNumber + 1].toUpperCase());
         }
         return new Command
                 (
@@ -70,7 +84,7 @@ public class Interpreter {
 
         if (name.charAt(0) == '_') {
             pc.save(name);
-            pc.incrementPC();
+            return getExecutableCommand("NOP");
         }
 
         for (ExecutableCommand command : executableCommands) {
