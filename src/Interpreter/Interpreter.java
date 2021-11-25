@@ -1,20 +1,27 @@
 package Interpreter;
 
 import DataHolders.Commands.Command;
+import DataHolders.Commands.CommandData;
 import DataHolders.Commands.ExecutableCommand;
 import DataHolders.Converter;
 import DataHolders.Registers.*;
+import ProcessorIO.ProcessorStreams;
+
+import java.util.BitSet;
+import java.util.Locale;
 
 public class Interpreter {
 
     private final ExecutableCommand[] executableCommands;
+    private final ProcessorStreams processorStreams;
     private final InterpreterRegisters interpreterRegisters;
     private Command[] commands;
     private String[] program;
     private int currentLineNumber;
 
-    public Interpreter(InterpreterRegisters interpreterRegisters, ExecutableCommand ... executableCommands) {
+    public Interpreter(InterpreterRegisters interpreterRegisters, ProcessorStreams processorStreams, ExecutableCommand ... executableCommands) {
         this.interpreterRegisters = interpreterRegisters;
+        this.processorStreams = processorStreams;
         this.executableCommands = executableCommands;
     }
 
@@ -25,15 +32,15 @@ public class Interpreter {
 
     private void fillCP() {
         CounterRegister pc = interpreterRegisters.registers.getPc();
+        BitSet pcSave = pc.getData();
 
-        pc.setPC(0L);
         while (Converter.convertBitsToInt(pc.getData()) < program.length) {
             int pcData = Converter.convertBitsToInt(pc.getData());
             if (program[pcData].charAt(0) == '_')
                 pc.save(program[pcData].split(" ")[0].toUpperCase());
             pc.incrementPC();
         }
-        pc.setPC(0L);
+        pc.setData(pcSave);
     }
 
     public void run() throws InterpreterException {
@@ -66,16 +73,18 @@ public class Interpreter {
 
         ExecutableCommand executableCommand = getExecutableCommand(words[0].toUpperCase());
         for (int registerNumber = 0; registerNumber < words.length - 1 && registerNumber < 3 && registerNumber < executableCommand.getRegistersRequired(); registerNumber++) {
-            R[registerNumber] = getRegister(words[registerNumber + 1].toUpperCase());
+            R[registerNumber] = getRegister(words[registerNumber + 1]);
         }
+        CommandData commandData = new CommandData(  interpreterRegisters.registers.getPc(),
+                                                    interpreterRegisters.registers.getMemory(),
+                                                    processorStreams);
         return new Command
                 (
                         executableCommand,
                         R[0],
                         R[1],
                         R[2],
-                        interpreterRegisters.registers.getMemory(),
-                        interpreterRegisters.registers.getPc()
+                        commandData
                 );
     }
 
@@ -108,7 +117,7 @@ public class Interpreter {
                 return new TypedRegister(getRegisterFromLong(name), RegisterType.value);
         } else {
             try {
-                return interpreterRegisters.getRegister(name);
+                return interpreterRegisters.getRegister(name.toUpperCase());
             } catch (Exception e) {
                 int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
                 throw new InterpreterException(pcData, program[pcData], e.getMessage());

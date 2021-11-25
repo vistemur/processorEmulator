@@ -5,54 +5,59 @@ import Interpreter.*;
 import ProcessorCommands.*;
 import ProcessorCommands.Convert.*;
 import ProcessorCommands.Functions.*;
+import ProcessorCommands.InOut.*;
 import ProcessorCommands.Jump.*;
 import ProcessorCommands.Logic.*;
 import ProcessorCommands.Math.*;
 import ProcessorCommands.Shift.*;
+import ProcessorIO.Console.*;
+import ProcessorIO.ProcessorStreams;
 
 public class Processor {
 
     ProcessorRegisters registers = new ProcessorRegisters();
+    ProcessorStreams streams = new ProcessorStreams();
     Memory memory = new Memory(100, registers.system.bdp, registers.system.itp);
     int stackSize = 50;
-    Interpreter interpreter = new Interpreter(new InterpreterRegisters(new RegistersForInterpreter() {
 
-        public Register getPoh(int number) throws RegistersException {
-            return registers.poh.getRegister(number);
-        }
+    Interpreter interpreter = new Interpreter(
+            new InterpreterRegisters(
+                    new RegistersForInterpreter() {
 
-        public CounterRegister getPc() {
-            return registers.system.pc;
-        }
+                        public Register getPoh(int number) throws RegistersException {
+                            return registers.poh.getRegister(number);
+                        }
 
-        public Register getPtp() {
-            return registers.system.ptp;
-        }
+                        public CounterRegister getPc() {
+                            return registers.system.pc;
+                        }
 
-        public Register getIta() {
-            return registers.system.bdp;
-        }
+                        public Register getPtp() {
+                            return registers.system.ptp;
+                        }
 
-        public Register getBva() {
-            return registers.system.bva;
-        }
+                        public Register getIta() {
+                            return registers.system.bdp;
+                        }
 
-        public Register getBdp() {
-            return registers.system.bdp;
-        }
+                        public Register getBva() {
+                            return registers.system.bva;
+                        }
 
-        public Register getFlagsRegister() {
-            return registers.system.flagsRegister;
-        }
+                        public Register getBdp() {
+                            return registers.system.bdp;
+                        }
 
-        public Memory getMemory() {
-            return memory;
-        }
+                        public Register getFlagsRegister() {
+                            return registers.system.flagsRegister;
+                        }
 
-        public Register getMemoryRegister(int number) throws RegistersException {
-            return memory.get(number);
-        }
-    }),
+                        public Memory getMemory() {
+                            return memory;
+                        }
+                    }
+            ),
+            streams,
             new MOV(),
             new ADD(),
             new SUB(),
@@ -78,12 +83,17 @@ public class Processor {
             new RET(),
             new NOP(),
             new LTD(),
-            new DTL()
+            new DTL(),
+            new IN(),
+            new OUT()
     );
 
     public Processor() {
 
         registers.system.bdp.setData(Converter.convertIntToBits(stackSize));
+
+        streams.add(new ConsoleCharOutputStream());
+        streams.add(new ConsoleInputStream());
 
         String[] program = new String[] {
                 "JMP _main",

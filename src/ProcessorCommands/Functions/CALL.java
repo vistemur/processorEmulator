@@ -1,9 +1,7 @@
 package ProcessorCommands.Functions;
 
-import DataHolders.Commands.ExecutableCommand;
+import DataHolders.Commands.*;
 import DataHolders.Converter;
-import DataHolders.Memory.Memory;
-import DataHolders.Registers.CounterRegister;
 import DataHolders.Registers.TypedRegister;
 
 import java.util.BitSet;
@@ -24,12 +22,12 @@ public class CALL implements ExecutableCommand {
         jump = R1.register.getData();
     }
 
-    public void changeData(CounterRegister pc, Memory memory) throws Exception {
+    public void changeData(CommandData data) throws Exception {
         long jumpValue = Converter.convertBitsToLong(jump);
         if (jumpValue < 0)
             throw new Exception(getLine() + " can't call negative positions");
 
-        memory.push(pc.getData());
-        pc.setData(jump);
+        data.memory.push(data.pc.getData());
+        data.pc.setData(jump);
     }
 }
