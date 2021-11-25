@@ -9,13 +9,15 @@ public class Main {
     public static void main(String[] args) {
         Processor processor = new Processor();
 
-        processor.streams.add(new ConsoleCharOutputStream());
+        processor.streams.add(new ConsoleLongOutputStream());
         processor.streams.add(new ConsoleInputStream());
-        processor.interpreter.loadProgram(FileReader.readFile("program.txt"));
-        try {
-            processor.interpreter.run();
-        } catch (InterpreterException e) {
-            System.out.println(e.getMessage());
+        if (args.length > 0) {
+            processor.interpreter.loadProgram(FileReader.readFile(args[0]));
+            try {
+                processor.interpreter.run();
+            } catch (InterpreterException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
