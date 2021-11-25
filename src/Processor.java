@@ -89,31 +89,6 @@ public class Processor {
     );
 
     public Processor() {
-
         registers.system.bdp.setData(Converter.convertIntToBits(stackSize));
-
-        streams.add(new ConsoleCharOutputStream());
-        streams.add(new ConsoleInputStream());
-
-        String[] program = new String[] {
-                "JMP _main",
-
-                "_lol",
-                "MOV R0 1",
-                "RET",
-                "ADD R1 1",
-
-                "_main",
-                "CALL _lol",
-                "ADD R2 1",
-        };
-
-        interpreter.loadProgram(program);
-        try {
-            interpreter.run();
-            System.out.println(registers);
-        } catch (InterpreterException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

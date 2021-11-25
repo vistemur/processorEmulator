@@ -1,13 +1,22 @@
 import DataHolders.Converter;
 import DataHolders.Memory.Memory;
 import DataHolders.Registers.*;
+import Interpreter.InterpreterException;
+import ProcessorIO.Console.*;
 
 public class Main {
 
     public static void main(String[] args) {
         Processor processor = new Processor();
 
-        
+        processor.streams.add(new ConsoleCharOutputStream());
+        processor.streams.add(new ConsoleInputStream());
+        processor.interpreter.loadProgram(FileReader.readFile("program.txt"));
+        try {
+            processor.interpreter.run();
+        } catch (InterpreterException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void testMemory() {
