@@ -2,9 +2,11 @@ package ProcessorIO;
 
 import DataHolders.Converter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.BitSet;
 
 public class FileLongOutputStream implements ProcessorOutputStream {
@@ -12,7 +14,18 @@ public class FileLongOutputStream implements ProcessorOutputStream {
     private String fileName;
 
     public FileLongOutputStream(String fileName) {
-        this.fileName = fileName;
+        try {
+            String filePath = FileLongOutputStream.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            filePath = URLDecoder.decode(filePath, "UTF-8");
+            filePath = filePath.substring(0, filePath.length() - 21);
+            filePath += fileName;
+            this.fileName = filePath;
+            PrintWriter writer = new PrintWriter(filePath);
+            writer.print("");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void write(BitSet data) {
