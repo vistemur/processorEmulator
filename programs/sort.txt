@@ -13,7 +13,6 @@ MOV [R0] R2
 ADD R0 1
 JG _fill_next R7 R0
 
-JMP _pr
 JMP _sort
 
 _print
@@ -44,5 +43,4 @@ JG _iter2 R7 R1
 ADD R0 1
 JG _iter1 R7 R0
 
-_pr
 CALL _print

@@ -14,9 +14,7 @@ public class Interpreter {
     private final ExecutableCommand[] executableCommands;
     private final ProcessorStreams processorStreams;
     private final InterpreterRegisters interpreterRegisters;
-    private Command[] commands;
     private String[] program;
-    private int currentLineNumber;
 
     public Interpreter(InterpreterRegisters interpreterRegisters, ProcessorStreams processorStreams, ExecutableCommand ... executableCommands) {
         this.interpreterRegisters = interpreterRegisters;
@@ -44,7 +42,6 @@ public class Interpreter {
 
     public void run() throws InterpreterException {
         Register pc = interpreterRegisters.registers.getPc();
-        commands = new Command[program.length];
 
         while (Converter.convertBitsToInt(pc.getData()) < program.length) {
             runNextCommand();
@@ -55,12 +52,9 @@ public class Interpreter {
         Register pc = interpreterRegisters.registers.getPc();
         int pcData = Converter.convertBitsToInt(pc.getData());
 
-        while (pcData >= currentLineNumber) {
-            commands[currentLineNumber] = getCommand(program[currentLineNumber]);
-            currentLineNumber++;
-        }
         try {
-            commands[pcData].execute();
+            Command command = getCommand(program[pcData]);
+            command.execute();
         } catch (Exception e) {
             throw new InterpreterException(pcData, program[pcData], e.getMessage());
         }
@@ -109,18 +103,14 @@ public class Interpreter {
 
         if (firstChar == '\'') {
             return new TypedRegister(getRegisterFromChar(name), RegisterType.value);
-        } else if (firstChar >= '0' && firstChar <= '9' || firstChar <= '-') {
-            if (name.contains("."))
-                return new TypedRegister(getRegisterFromDouble(name), RegisterType.value);
-            else
-                return new TypedRegister(getRegisterFromLong(name), RegisterType.value);
+        } else if (name.contains("[")) {
+            return new TypedRegister(getMemory(name), RegisterType.memory);
+        } else if (firstChar == '_') {
+            return new TypedRegister(getSavedValue(name), RegisterType.value);
+        } else if ((firstChar >= '0' && firstChar <= '9' || firstChar <= '-')) {
+            return new TypedRegister(getNumber(name), RegisterType.value);
         } else {
-            try {
-                return interpreterRegisters.getRegister(name.toUpperCase());
-            } catch (Exception e) {
-                int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
-                throw new InterpreterException(pcData, program[pcData], e.getMessage());
-            }
+            return new TypedRegister(getSystemRegister(name), RegisterType.register);
         }
     }
 
@@ -128,6 +118,40 @@ public class Interpreter {
         Register answer = new Register();
         answer.setData(Converter.convertByteToBits((byte) name.charAt(1)));
         return answer;
+    }
+
+    private Register getMemory(String text) throws  InterpreterException {
+        try {
+            return interpreterRegisters.getMemory(text.toUpperCase());
+        } catch (Exception e) {
+            int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
+            throw new InterpreterException(pcData, program[pcData], e.getMessage());
+        }
+    }
+
+    private Register getSavedValue(String text) throws  InterpreterException {
+        try {
+            return interpreterRegisters.getSavedValue(text.toUpperCase());
+        } catch (Exception e) {
+            int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
+            throw new InterpreterException(pcData, program[pcData], e.getMessage());
+        }
+    }
+
+    private Register getNumber(String text) {
+        if (text.contains("."))
+            return getRegisterFromDouble(text);
+        else
+            return getRegisterFromLong(text);
+    }
+
+    private Register getSystemRegister(String text) throws  InterpreterException {
+        try {
+            return interpreterRegisters.getSystemRegister(text.toUpperCase());
+        } catch (Exception e) {
+            int pcData = Converter.convertBitsToInt(interpreterRegisters.registers.getPc().getData());
+            throw new InterpreterException(pcData, program[pcData], e.getMessage());
+        }
     }
 
     private Register getRegisterFromLong(String name) {

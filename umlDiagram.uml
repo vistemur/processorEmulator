@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/romanpozdnyakov/Desktop/7sem/arhVS/processorEmulator/src</OriginalElement>
+  <nodes>
+    <node x="8341.0" y="741.5">ProcessorCommands.Math.DADD</node>
+    <node x="48.0" y="391.0">DataHolders.Registers.CounterRegister.SavedPosition</node>
+    <node x="11414.0" y="741.5">ProcessorCommands.Math.SUB</node>
+    <node x="439.0" y="741.5">ProcessorCommands.Shift.SHL</node>
+    <node x="5268.0" y="741.5">ProcessorCommands.MOV</node>
+    <node x="3512.0" y="741.5">ProcessorCommands.Shift.SHR</node>
+    <node x="2634.0" y="719.0">ProcessorCommands.Functions.CALL</node>
+    <node x="0.0" y="943.0">DataHolders.Converter</node>
+    <node x="2121.0" y="943.0">DataHolders.Registers.SystemRegisters</node>
+    <node x="6585.0" y="741.5">ProcessorCommands.Math.MUL</node>
+    <node x="3602.0" y="943.0">Interpreter.InterpreterRegisters</node>
+    <node x="4390.0" y="741.5">ProcessorCommands.Math.ADD</node>
+    <node x="4829.0" y="730.5">ProcessorCommands.Functions.RET</node>
+    <node x="11853.0" y="719.0">ProcessorCommands.Jump.JMP</node>
+    <node x="2666.0" y="943.0">DataHolders.Registers.Registers</node>
+    <node x="10975.0" y="719.0">ProcessorCommands.InOut.OUT</node>
+    <node x="1317.0" y="708.0">ProcessorCommands.Jump.JNE</node>
+    <node x="878.0" y="741.5">ProcessorCommands.Math.DDIV</node>
+    <node x="5707.0" y="741.5">ProcessorCommands.Convert.DTL</node>
+    <node x="7463.0" y="708.0">ProcessorCommands.InOut.IN</node>
+    <node x="1756.0" y="741.5">ProcessorCommands.Convert.LTD</node>
+    <node x="3951.0" y="741.5">ProcessorCommands.Logic.OR</node>
+    <node x="5926.5" y="536.0">DataHolders.Commands.ExecutableCommand</node>
+    <node x="2386.0" y="943.0">Interpreter.RegistersForInterpreter</node>
+    <node x="5500.0" y="943.0">DataHolders.Registers.TypedRegister</node>
+    <node x="4255.0" y="943.0">Processor</node>
+    <node x="4772.0" y="943.0">DataHolders.Registers.ProcessorRegisters</node>
+    <node x="1237.0" y="1113.5">ProcessorIO.Console.ConsoleCharOutputStream</node>
+    <node x="7024.0" y="708.0">ProcessorCommands.Jump.JNZ</node>
+    <node x="2914.0" y="943.0">DataHolders.Commands.Command</node>
+    <node x="10536.0" y="741.5">ProcessorCommands.Math.DIV</node>
+    <node x="601.0" y="0.0">Interpreter.Interpreter</node>
+    <node x="5022.0" y="943.0">DataHolders.Commands.CommandData</node>
+    <node x="1830.0" y="943.0">DataHolders.Memory.Memory</node>
+    <node x="1101.75" y="943.0">ProcessorIO.ProcessorOutputStream</node>
+    <node x="7902.0" y="708.0">ProcessorCommands.Jump.JGE</node>
+    <node x="5835.0" y="943.0">FileReader</node>
+    <node x="9219.0" y="708.0">ProcessorCommands.Jump.JE</node>
+    <node x="6473.0" y="943.0">DataHolders.Registers.RegistersException</node>
+    <node x="3073.0" y="741.5">ProcessorCommands.Math.DSUB</node>
+    <node x="3979.0" y="943.0">DataHolders.Registers.RegisterType</node>
+    <node x="935.0" y="1113.5">ProcessorIO.Console.ConsoleDoubleOutputStream</node>
+    <node x="327.0" y="173.5">DataHolders.Registers.FlagsRegister</node>
+    <node x="0.0" y="151.0">DataHolders.Registers.CounterRegister</node>
+    <node x="9658.0" y="741.5">ProcessorCommands.Logic.XOR</node>
+    <node x="467.57142857142856" y="943.0">ProcessorIO.ProcessorInputStream</node>
+    <node x="222.5" y="0.0">DataHolders.Registers.Register</node>
+    <node x="10097.0" y="741.5">ProcessorCommands.Logic.AND</node>
+    <node x="1520.0" y="1113.5">ProcessorIO.Console.ConsoleLongOutputStream</node>
+    <node x="8780.0" y="708.0">ProcessorCommands.Jump.JG</node>
+    <node x="548.0" y="1058.0">ProcessorIO.ProcessorStreams</node>
+    <node x="6133.0" y="943.0">Interpreter.InterpreterException</node>
+    <node x="6146.0" y="708.0">ProcessorCommands.Jump.JZ</node>
+    <node x="316.0" y="1102.0">ProcessorIO.Console.ConsoleInputStream</node>
+    <node x="2195.0" y="741.5">ProcessorCommands.NOP</node>
+    <node x="0.0" y="741.5">ProcessorCommands.Math.DMUL</node>
+    <node x="4529.0" y="943.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ProcessorCommands.Logic.XOR" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="9867.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JGE" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="8111.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Functions.RET" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="5038.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.DIV" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="10745.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JE" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="9428.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JG" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="8989.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Logic.AND" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="10306.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorIO.Console.ConsoleCharOutputStream" target="ProcessorIO.ProcessorOutputStream" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="1368.5" y="1038.0" />
+      <point x="1222.25" y="1038.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorIO.ProcessorStreams" target="ProcessorIO.ProcessorInputStream" relationship="REALIZATION">
+      <point x="0.0" y="-94.5" />
+      <point x="731.5" y="1018.0" />
+      <point x="581.0714285714286" y="1018.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorCommands.Math.MUL" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="6794.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Shift.SHR" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="3721.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorIO.Console.ConsoleInputStream" target="ProcessorIO.ProcessorInputStream" relationship="REALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="422.0" y="1038.0" />
+      <point x="581.0714285714286" y="1038.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorCommands.Shift.SHL" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="648.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.SUB" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="11623.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.DADD" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="8550.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JMP" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-84.0" />
+      <point x="12062.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Functions.CALL" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-84.0" />
+      <point x="2843.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorIO.Console.ConsoleLongOutputStream" target="ProcessorIO.ProcessorOutputStream" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="1652.5" y="1038.0" />
+      <point x="1222.25" y="1038.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorCommands.MOV" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="5477.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="DataHolders.Registers.CounterRegister" target="DataHolders.Registers.Register" relationship="GENERALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="153.5" y="126.0" />
+      <point x="297.5" y="126.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="ProcessorIO.Console.ConsoleDoubleOutputStream" target="ProcessorIO.ProcessorOutputStream" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="1076.0" y="1038.0" />
+      <point x="1222.25" y="1038.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorCommands.InOut.IN" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="7672.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.InOut.OUT" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-84.0" />
+      <point x="11184.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JNE" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="1526.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.DDIV" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="1087.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="DataHolders.Registers.FlagsRegister" target="DataHolders.Registers.Register" relationship="GENERALIZATION">
+      <point x="0.0" y="-72.5" />
+      <point x="441.5" y="126.0" />
+      <point x="297.5" y="126.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="DataHolders.Registers.CounterRegister.SavedPosition" target="DataHolders.Registers.CounterRegister" relationship="INNER_CLASS">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="95.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JNZ" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="7233.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Convert.DTL" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="5916.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Convert.LTD" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="1965.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.ADD" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="4599.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.DSUB" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="3282.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorIO.ProcessorStreams" target="ProcessorIO.ProcessorOutputStream" relationship="REALIZATION">
+      <point x="0.0" y="-94.5" />
+      <point x="731.5" y="1028.0" />
+      <point x="1222.25" y="1028.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="ProcessorCommands.Logic.OR" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="4160.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Math.DMUL" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="209.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.NOP" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="2404.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="ProcessorCommands.Jump.JZ" target="DataHolders.Commands.ExecutableCommand" relationship="REALIZATION">
+      <point x="0.0" y="-95.0" />
+      <point x="6355.5" y="683.0" />
+      <point x="6136.0" y="683.0" />
+      <point x="0.0" y="61.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.09160429547673284" showDependencies="false" x="6136.0" y="643.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
