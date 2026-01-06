@@ -91,7 +91,7 @@ memmory will look like this [ 1 1 0 0 0 ... 0]
 
 programs are compiled to use functions as text feature
 
-functiond start with underline
+functions start with underline
 
 ```console
 _infinite_loop
