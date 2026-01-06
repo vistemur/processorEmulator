@@ -15,7 +15,7 @@ public class JZ implements ExecutableCommand {
     }
 
     public int getRegistersRequired() {
-        return 3;
+        return 2;
     }
 
     public void execute(TypedRegister R1, TypedRegister R2, TypedRegister R3) throws Exception {
